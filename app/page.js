@@ -126,7 +126,7 @@ export default function Home() {
 
 
         
-        ///Function that finds out if king is in check at the begining of your move///
+        ///Function that finds out if king is in  / check at the begining of your move///
         const movesforking = movesforrking(
           colortomove,
           field0,
