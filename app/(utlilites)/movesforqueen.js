@@ -1,36 +1,30 @@
 import { staticchessboard } from "./staticchessbord";
 import { checkifcangothere } from "./checkifpiececangothere";
-export function movesforrook(color, field0, field1, chessboard, index) {
-  //All functions with moves for pieces are similar to each other. If you want to check 
-  // what each piece of code means go to utilites/moveforbishop.js.
+export function movesforrqueen(color, field0, field1, chessboard, index) {
   let tableofpossiblemoves = [];
   let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  let i;
-
+  let i
   const colorofenemy = color === "white" ? "black" : "white";
 
-  let bullsifpiececangothere = [true, true, true, true];
+  let bullsifpiececangothere = [true, true, true, true,true,true,true,true];
   let numberoffinisheddirections=0
+
+
   for (i = 1; i < 9; i++) {
-    const moves = [
-      staticchessboard.indexOf(tab[field0 - 1] + (field1 + i)),
-      staticchessboard.indexOf(tab[field0 - 1] + (field1 - i)),
-      staticchessboard.indexOf(tab[field0 - i - 1] + field1),
-      staticchessboard.indexOf(tab[field0 + i - 1] + field1),
-    ];
+      const moves = [
+    staticchessboard.indexOf(tab[field0 - 1] + (field1 + i)),
+    staticchessboard.indexOf(tab[field0 - 1] + (field1 - i)),
+    staticchessboard.indexOf(tab[field0 - i - 1] + field1),
+    staticchessboard.indexOf(tab[field0 + i - 1] + field1),
+    staticchessboard.indexOf(tab[field0 - 1 + i] + (field1 + i)),
+    staticchessboard.indexOf(tab[field0 - 1 - i] + (field1 + i)),
+    staticchessboard.indexOf(tab[field0 - i - 1] + (field1 - i)),
+    staticchessboard.indexOf(tab[field0 + i - 1] + (field1 - i)),
 
-
-
-
-
-
-
-
-
+];
+ 
     for (let j = 0; j < moves.length; j++) {
-      if (numberoffinisheddirections === 4) {
-        break;
-      }
+
       if (bullsifpiececangothere[j]) {
         let obj = checkifcangothere(moves[j], chessboard, color, colorofenemy);
 

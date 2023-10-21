@@ -8,6 +8,10 @@ import {
 } from "react-icons/fa";
 
 export function findcorrecticon(color, piece, bull) {
+//// function to find correct icon of piece located on the field///
+
+
+
   const style = { margin: "auto" };
   const size = "3em";
 
@@ -19,7 +23,7 @@ export function findcorrecticon(color, piece, bull) {
 
   if (piece === "Pawn") {
     const icontoreturn = (
-      <FaChessPawn color={iconcolor} size={size} style={style} />
+      <FaChessPawn color={iconcolor} size={size} style={style}  className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer"/>
     );
 
     return icontoreturn;
@@ -27,27 +31,27 @@ export function findcorrecticon(color, piece, bull) {
 
   if (piece === "Rook") {
     const icontoreturn = (
-      <FaChessRook color={iconcolor} size={size} style={style} />
+      <FaChessRook color={iconcolor} size={size} style={style} className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer"/>
     );
 
     return icontoreturn;
   }
   if (piece === "Bishop") {
-    const icontoreturn = (
-      <FaChessBishop color={iconcolor} size={size} style={style} />
+    const icontoreturn = ( 
+      <FaChessBishop color={iconcolor} size={size} style={style}  className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer" />
     );
 
     return icontoreturn;
   }
   if (piece === "Knight") {
     const icontoreturn = (
-      <FaChessKnight color={iconcolor} size={size} style={style} />
+      <FaChessKnight color={iconcolor} size={size} style={style}   className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer" />
     );
     return icontoreturn;
   }
   if (piece === "Queen") {
     const icontoreturn = (
-      <FaChessQueen color={iconcolor} size={size} style={style} />
+      <FaChessQueen color={iconcolor} size={size} style={style}  className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer" />
     );
 
     return icontoreturn;
@@ -55,7 +59,7 @@ export function findcorrecticon(color, piece, bull) {
 
   if (piece === "King") {
     const icontoreturn = (
-      <FaChessKing color={iconcolor} size={size} style={style} />
+      <FaChessKing color={iconcolor} size={size} style={style}  className="hover:-translate-y-1 hover:scale-110 duration-300 hover:cursor-pointer" />
     );
 
     return icontoreturn;

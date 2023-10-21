@@ -1,19 +1,11 @@
 import { staticchessboard } from "./staticchessbord";
-
+import { knightmoves } from "./allpossiblemovesforpiece";
 export const movesforknight = function (color, field0, field1, chessboard,index) {
+  //All functions with moves for pieces are similar to each other. If you want to check 
+  // what each piece of code means go to utilites/moveforbishop.js.
   let tableofpossiblemoves = [];
   let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  let allposiblemovesforknight = [
-    [+2, +1],
-    [+2, -1],
-    [-2, +1],
-    [-2, -1],
-    [+1, +2],
-    [-1, +2],
-    [-1, -2],
-    [+1, -2],
-  ];
-
+  let allposiblemovesforknight = knightmoves
   for (let i = 0; i < allposiblemovesforknight.length; i++) {
     if (
       field0 - allposiblemovesforknight[i][0] <= 8 &&
