@@ -4,11 +4,24 @@ import { movesforknight } from "./movesforknight";
 import { movesforrook } from "./movesforrook";
 import { movesforbishop } from "./movesforbishop";
 import { movesforrqueen } from "./movesforqueen";
+import { movesforpawn } from "./movesforpawn";
 
+export function findcorrectpiece(color, piece, fieldname0, fieldname1, chessboard, index,beatinginpassing){
 
-export function findcorrectpiece(color, piece, fieldname0, fieldname1, chessboard, index){
-
-
+  if (piece === "Pawn") {
+    const obj = movesforpawn(
+      color,
+      fieldname0,
+      fieldname1,
+      chessboard,
+      index,
+      beatinginpassing
+  
+    );
+  
+    return obj
+  
+  }
 
 
 
@@ -25,6 +38,12 @@ export function findcorrectpiece(color, piece, fieldname0, fieldname1, chessboar
         return obj
       }
   
+
+     
+
+
+
+
       if (piece === "Knight") {
         const obj = movesforknight(
           color,

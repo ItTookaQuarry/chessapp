@@ -6,7 +6,7 @@ export function findifcanprotect(field0, field1, color, chessboard, kingfield) {
   // If piece can cover king or take piece that puts king in check
   // we have to check if it is not pinned by other piece.
   let tab = ["A", "B", "C", "D", "E", "F", "G", "H"];
-let canbeprotected=false
+  let canbeprotected = false;
 
   let arrtocheck = [false, false, false, false, false, false, false, false];
 
@@ -15,47 +15,40 @@ let canbeprotected=false
     const fieldtwo = field1 + each[1];
 
     let field = chessboard[staticchessboard.indexOf(tab[fieldone] + fieldtwo)];
-
-    if (field?.takenby[0] === color && field?.takenby[1] === "Knight") {
+    
+    if (field?.takenby[0] === color && field?.takenby[1] === "Knight") 
+    
+    {
       const table = [...chessboard];
-      const temp = table[staticchessboard.indexOf(tab[field0-1] + field1)];
 
-      const temp2 = table[staticchessboard.indexOf(tab[fieldone-1] + fieldtwo)];
+      const i1 = staticchessboard.indexOf(tab[field0 - 1] + field1);
+      const i2 = staticchessboard.indexOf(tab[fieldone] + fieldtwo);
+      let temp = table[i1];
+      let temp2 = table[i2];
 
-      table[staticchessboard.indexOf(tab[fieldone-1] + fieldtwo)] = { ...temp, takenby: false };
+      table[i1] = { ...temp, takenby: temp2.takenby };
+      table[i2] = { ...temp2, takenby: false };
 
-      table[staticchessboard.indexOf(tab[field0-1] + field1)] = { ...temp2, takenby: temp.takenby };
-
-
-
-      
       let IFisChecked = checkifkingischecked(
-        table,
+        color,
         chessboard[kingfield].name[0],
         chessboard[kingfield].name[1],
-        color
+        table
       );
 
-
-      
-if(IFisChecked.ischecked.length===0)
-
-{
-    
-    
-    canbeprotected =  true}
-
-
-
+      if (IFisChecked.ischecked.length === 0) {
+        
+        
+        canbeprotected = true;
+      }
     }
 
-    return null
+    return null;
   });
 
-if( canbeprotected ===true){
-    return true
-}
-
+  if (canbeprotected === true) {
+    return true;
+  }
 
   for (let i = 1; i < 9; i++) {
     let moves = [
@@ -102,67 +95,71 @@ if( canbeprotected ===true){
       },
     ]
       .filter((each, index) => {
-      
-        if (
-          chessboard[each.field]?.takenby[1] !== each.piece &&
-          chessboard[each.field]?.takenby[1] !== "Queen"
-        ) {
-          arrtocheck[index] = true;
-        }
+
+     if(chessboard[each?.field]?.takenby[0]===color&&chessboard[each?.field]?.takenby[1]!==undefined){
+if(chessboard[each?.field]?.takenby[1]!==each.piece&&chessboard[each?.field].takenby[1]!=="Queen"){
+
+  
+
+  arrtocheck[each.index]=true
+
+}
+
+
+
+     }
 
         return (
           chessboard[each?.field] !== undefined && arrtocheck[index] !== true
         );
       })
       .filter((each) => {
+        let bull1 =
+          chessboard[each.field].takenby[1] === each.piece &&
+          chessboard[each.field].takenby[0] === color;
 
+        let bull2 =
+          chessboard[each.field].takenby[1] === "Queen" &&
+          chessboard[each.field].takenby[0] === color;
 
-        let bull1 = chessboard[each.field].takenby[1] === each.piece && chessboard[each.field].takenby[0] === color;
-
-        let bull2 = chessboard[each.field].takenby[1] === "Queen" && chessboard[each.field].takenby[0] === color;
-
-  
+        //
         const bull3 = bull1 === true || bull2 === true;
 
         if (bull3) {
+          arrtocheck[each.index]=true
 
 
-            const fieldone =  chessboard[each?.field]?.name[0]
-            const fieldtwo = chessboard[each?.field]?.name[1]
-        
-        
+          const fieldone = chessboard[each?.field]?.name[0];
+          const fieldtwo = chessboard[each?.field]?.name[1];
 
+          const table = [...chessboard];
 
-            const table = [...chessboard];
-     
+          const i1 = staticchessboard.indexOf(tab[field0 - 1] + field1);
+          const i2 = staticchessboard.indexOf(tab[fieldone - 1] + fieldtwo);
+          let temp = table[i1];
+          let temp2 = table[i2];
+          //
+          table[i1] = { ...temp, takenby: temp2.takenby };
+          table[i2] = { ...temp2, takenby: false };
 
-      const i1=staticchessboard.indexOf(tab[field0-1] + field1)
-        const i2 = staticchessboard.indexOf(tab[fieldone-1] + fieldtwo)
-        let temp = table[i1]
-        let temp2= table[i2]
-        table[i1]= temp2
-        table[i2]=temp
-    
-        
-        
-            let IFisChecked = checkifkingischecked(
-              color,
-              chessboard[kingfield].name[0],
-              chessboard[kingfield].name[1],
-            table,
-            );
-           
-      if(IFisChecked.ischecked.length===0){
-  
-        canbeprotected= true}
+          //
+          //
+
+          let IFisChecked = checkifkingischecked(
+            color,
+            chessboard[kingfield].name[0],
+            chessboard[kingfield].name[1],
+            table
+          );
+
+          if (IFisChecked.ischecked.length === 0) {
+            canbeprotected = true;
+          }
         }
 
-        return   bull3;
+        return bull3;
       });
-
-   
   }
 
-  
-  return canbeprotected
+  return canbeprotected;
 }

@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 
 export function findcorrecticon(color, piece, bull) {
-//// function to find correct icon of piece located on the field///
+//// Function to find correct icon of piece located on the field///
 
 
 
